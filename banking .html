@@ -1,0 +1,58 @@
+class BankAccount {
+    private String accountHolderName;
+    private double balance;
+    private String accountNumber;
+    
+    public BankAccount(String accountHolderName, String accountNumber, double initialDeposit) {
+        this.accountHolderName = accountHolderName;
+        this.accountNumber = accountNumber;
+        this.balance = initialDeposit;
+    }
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited: " + amount);
+        } else {
+            System.out.println("Invalid deposit amount!");
+        }
+    }
+    public void withdraw(double amount) {
+        if (amount > 0 && balance >= amount) {
+            balance -= amount;
+            System.out.println("Withdrew: " + amount);
+        } else {
+            System.out.println("Invalid withdrawal amount or insufficient balance!");
+        }
+    }
+    public void checkBalance() {
+        System.out.println("Current balance: " + balance);
+    }
+    public void displayAccountInfo() {
+        System.out.println("Account Holder: " + accountHolderName);
+        System.out.println("Account Number: " + accountNumber);
+        checkBalance();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        BankAccount account1 = new BankAccount("Shaik Nihal Ahammad", "1247894565", 1000.0);
+        BankAccount account2 = new BankAccount("Shaik Shaheed", "2402578918", 500.0);
+        System.out.println("Account 1 Info:");
+        account1.displayAccountInfo();
+        System.out.println();
+
+        System.out.println("Account 2 Info:");
+        account2.displayAccountInfo();
+        System.out.println();
+        
+        account1.deposit(500.0);  // Deposit
+        account1.withdraw(200.0); // Withdraw
+        account1.checkBalance();  // Check balance
+
+        System.out.println();
+
+        account2.withdraw(100.0); // Withdraw
+        account2.checkBalance();  // Check balance
+    }
+}
